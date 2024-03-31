@@ -113,6 +113,7 @@
         // the location store and supplying it through context.
         onMount(() => {
             const unlisten = history.listen((event) => {
+                console.log("listen", event)
                 preserveScroll = event.preserveScroll || false;
                 location.set(event.location);
             });
