@@ -20,7 +20,7 @@
 
     $: if ($activeRoute && $activeRoute.route === route) {
         routeParams = $activeRoute.params;
-
+        console.log($activeRoute)
         const { component: c, path, ...rest } = $$props;
         routeProps = rest;
 
@@ -41,7 +41,6 @@
 {#if $activeRoute && $activeRoute.route === route}
     {#if component}
         {#await component then resolvedComponent}
-            <h1>Pizdec</h1>
             <svelte:component
                 this={resolvedComponent?.default || resolvedComponent}
                 {...routeParams}
