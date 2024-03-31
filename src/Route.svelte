@@ -28,7 +28,7 @@
             if (c.toString().startsWith("class ")) component = c;
             else component = c();
         }
-
+        console.log(component);
         canUseDOM() && !$activeRoute.preserveScroll && window?.scrollTo(0, 0);
     }
 
