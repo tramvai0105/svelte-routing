@@ -90,6 +90,7 @@
     // the basepath changes.
     $: {
         const { path: basepath } = $base;
+        console.log(basepath)
         routes.update((rs) =>
             rs.map((r) =>
                 Object.assign(r, { path: combinePaths(basepath, r._path) })
