@@ -28,7 +28,6 @@
             if (c.toString().startsWith("class ")) component = c;
             else component = c();
         }
-        console.log(component);
         canUseDOM() && !$activeRoute.preserveScroll && window?.scrollTo(0, 0);
     }
 
@@ -42,6 +41,7 @@
 {#if $activeRoute && $activeRoute.route === route}
     {#if component}
         {#await component then resolvedComponent}
+            <h1>Pizdec</h1>
             <svelte:component
                 this={resolvedComponent?.default || resolvedComponent}
                 {...routeParams}
