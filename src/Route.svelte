@@ -33,6 +33,10 @@
 
     registerRoute(route);
 
+    let delay = new Promise(res=>{
+        setTimeout(()=>res(),1000)
+    })
+
     onDestroy(() => {
         unregisterRoute(route);
     });
@@ -40,7 +44,7 @@
 
 {#if $activeRoute && $activeRoute.route === route}
     {#if component}
-        {#await component then resolvedComponent}
+        {#await delay then component then resolvedComponent}
             <svelte:component
                 this={resolvedComponent?.default || resolvedComponent}
                 {...routeParams}
