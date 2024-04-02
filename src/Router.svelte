@@ -9,6 +9,9 @@
     export let url = null;
     export let viewtransition = null;
     export let history = globalHistory;
+    export let delayFn = null;
+    export let duration = 0;
+    export let delay = 0;
 
     const viewtransitionFn = (node, _, direction) => {
         const vt = viewtransition(direction);
@@ -112,8 +115,15 @@
         // The topmost Router in the tree is responsible for updating
         // the location store and supplying it through context.
         onMount(() => {
-            const unlisten = history.listen((event) => {
-                console.log("listen", event)
+            const unlisten = history.listen(async (event) => {
+                if(event.action == "POP" && delayFn){
+                    await new Promise(res=>{
+                        delayFn()
+                        res()
+                    }, delay)
+                    await new Promise(res=>
+                    setTimeout(()=>{res()}, duration))
+                }
                 preserveScroll = event.preserveScroll || false;
                 location.set(event.location);
             });
